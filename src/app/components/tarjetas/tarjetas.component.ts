@@ -29,6 +29,13 @@ export class TarjetasComponent implements OnInit {
     { value: 1, name: 'Facope' },
     { value: 2, name: 'Core' }
   ];
+
+  sistemas = [
+    { value: 3, name: 'Factoring' },
+    { value: 2, name: 'FDO' },
+    { value: 1, name: 'Perfiles' }
+  ];
+
   constructor(private tarjetasService: TarjetasService) { }
 
   ngOnInit(): void { }

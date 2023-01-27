@@ -18,6 +18,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 
 import { HighlightModule, HighlightOptions, HIGHLIGHT_OPTIONS } from 'ngx-highlightjs';
+import {MatTableModule} from '@angular/material/table'; 
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 @NgModule({
   declarations: [
@@ -38,7 +40,9 @@ import { HighlightModule, HighlightOptions, HIGHLIGHT_OPTIONS } from 'ngx-highli
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
-    HighlightModule
+    HighlightModule,
+    MatTableModule,
+    Ng2SearchPipeModule
   ],
   providers: [
     {

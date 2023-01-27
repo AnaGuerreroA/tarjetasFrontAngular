@@ -1,8 +1,13 @@
+<input type="text" [(ngModel)]="term">
 <div class="grillaTarjetas">
-  <mat-card style="width: 18rem;" *ngFor="let item of listaTarjetas">
+  <mat-card style="width: 18rem;" *ngFor="let item of buscaTarjetas | filter: term">
     <mat-card-content>
-        <h5 class="card-title">{{ item.titulo }}</h5>
-        <h6 class="card-subtitle mb-2 text-muted"> Sistema: {{ item.sistema }} BaseDatos: {{ item.baseDatos }}  </h6>
+      <h5 class="card-title">{{ item.titulo }}</h5>
+      <h6 class="card-subtitle mb-2 text-muted">
+        <span class="card-title">Sistema: {{ item.sistemaString }}</span>        
+          
+        <span class="card-title">BaseDatos: {{ item.baseDatosString }}</span>        
+      </h6>
         <pre> <code  class="card-text" [highlight]="item.informacion" [languages]="['sql']" [lineNumbers]="true"> </code></pre>      
         <button mat-raised-button color="warn" (click)="eliminaTarjetas(item.id)">Eliminar</button>
         <button  mat-icon-button matTooltip="Primary" color="Primary" aria-label="Example icon-button with a heart icon" [cdkCopyToClipboard]="item.informacion">
@@ -11,3 +16,6 @@
       </mat-card-content>
     </mat-card>
   </div>
+
+  
+  

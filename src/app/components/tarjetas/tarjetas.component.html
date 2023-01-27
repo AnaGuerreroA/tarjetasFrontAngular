@@ -8,8 +8,10 @@
         <textarea matInput [(ngModel)]="tarjeta.informacion" placeholder="Contenido Tarjeta" name="ContenidoTarjeta"></textarea>
       </mat-form-field>
       <mat-form-field>
-        <mat-label>Sistema</mat-label>
-        <input matInput [(ngModel)]="tarjeta.sistema" type="number" name="Sistema" placeholder="Sistema">
+        <mat-label>Sistema:</mat-label>        
+        <mat-select [(ngModel)]="tarjeta.sistema" name="Sistema" [ngModelOptions]="{standalone: true}">
+          <mat-option *ngFor="let item of sistemas" [value]="item.value" >{{item.name}}</mat-option>
+        </mat-select>
       </mat-form-field>
       <mat-form-field>
         <mat-label>Base de Datos:</mat-label>        

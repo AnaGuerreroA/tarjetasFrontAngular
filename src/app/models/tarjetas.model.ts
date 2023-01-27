@@ -10,3 +10,9 @@ export enum baseDatos {
     Facope = 1,
     Core = 2
 }
+
+export interface searchTarjetaDTO extends Omit<Tarjeta, 'id'>
+{
+    baseDatosString?: string;
+    sistemaString?:string;
+}

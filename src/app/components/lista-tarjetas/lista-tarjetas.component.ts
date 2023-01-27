@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit } from '@angular/core';
 import { TarjetasService } from 'src/app/services/tarjetas.service';
-import { baseDatos, Tarjeta } from 'src/app/models/tarjetas.model';
+import { baseDatos, Tarjeta, searchTarjetaDTO } from 'src/app/models/tarjetas.model';
 import { tap, take } from 'rxjs/operators';
 import { zip } from 'rxjs'
 import {Clipboard} from '@angular/cdk/clipboard';
@@ -12,9 +12,11 @@ import {Clipboard} from '@angular/cdk/clipboard';
 })
 export class ListaTarjetasComponent implements OnInit {
   @Input() onSaveComplete: EventEmitter<void> = new EventEmitter<void>();
-
+  term:string = "";
   
   listaTarjetas: Tarjeta[] = [];
+
+  buscaTarjetas: searchTarjetaDTO[] = [];
 
   constructor(
     private tarjetasService: TarjetasService,
@@ -29,8 +31,14 @@ export class ListaTarjetasComponent implements OnInit {
     console.log('aca')   
     this.tarjetasService.listaTarjetas()
             .subscribe(response => {
-              console.log(response)
-                this.listaTarjetas = response;
+                this.buscaTarjetas = response;
+                this.buscaTarjetas =  this.buscaTarjetas.map(x => {
+                                        const newX = {...x};
+                                        newX.sistemaString = x.sistema === 1 ? 'Perfiles' : x.sistema === 2 ? 'FDO' : x.sistema === 3 ? 'Factoring' : 'Desconocido';
+                                        newX.baseDatosString = x.baseDatos === 1 ? 'Facope' : x.baseDatos === 2 ? 'Core' : 'Desconocido';
+                                        return newX;
+                                      });
+
     });
   }
     
